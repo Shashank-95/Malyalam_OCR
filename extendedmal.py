@@ -9,6 +9,8 @@ from collections import defaultdict
 class OCR:
     glyphs=[0,1,2,3,4,6,7,8,11,12,13,14,15,16,18,19,21,23,24,25,26,27,28,29,31,32,33,35,36,37,38,39,41,42,43,44,45,46,47,48,49,51,52,53,54,55,56,57,59,61,62,63,64,65,66,67,68,69,71,72,73,74,75,76,77,78,79,81,82,83,84,85,86,88,89,91,92,101,102]
     def __init__(self,fname):
+        """"
+        """
         orgpath="/home/shashank/Desktop/Geeksfolder/imageprocfiles/Malayalam"
         os.chdir(orgpath)
         img=Image.open(fname+'.tif')
@@ -25,6 +27,14 @@ class OCR:
         
         
     def wordSegmentation(self,ppimg,sterlh,sterlw,fname):
+        """
+        page to word segment
+        :param ppimg:
+        :param sterlh:
+        :param sterlw:
+        :param fname:
+        :return:
+        """
         kernel=np.ones((sterlh,sterlw),dtype="uint8")*255
         dilation=cv2.dilate(ppimg,kernel,iterations=4)
         #cv2.imwrite('dilated.png',dilation)
