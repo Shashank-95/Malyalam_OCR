@@ -1,0 +1,198 @@
+<script>
+
+    function quant(){
+        var mac=85000;
+        var sam=60000;
+        var google=65000;
+        var i8= 80000;
+        var final="";
+        var q;
+        var tax;
+        var deltax;
+        var ttlcost;
+
+        var pro = document.getElementById("products");
+        var msg = pro.options[pro.selectedIndex].value;
+        final+="Product:"
+        if (msg=="Mac Book Pro"){
+            document.getElementById("img").innerHTML = "<img src='mac_book.jpg'>";
+            final+=msg + "\n";
+            document.getElementsByName("price")[0].value = mac;
+            if(document.getElementById("one").checked){
+                q=1;
+                final+= "\nQuantity"+q;
+                document.getElementsByName("price")[0].value=mac*q;
+            }   
+            else if(document.getElementById("two").checked)
+            {
+                q=2
+                final+= "\nQuantity:"+q;
+                document.getElementsByName("price")[0].value=mac*q;
+            }
+            else if(document.getElementById("three").checked){
+                q=3
+                final+= "\nQuantity:"+q;
+                document.getElementsByName("price")[0].value=mac*q;
+            }
+        }
+            
+        else if (msg=="Samsung Galaxy 8"){
+            document.getElementById("img").innerHTML = "<img src='s8.jpg'>";
+            final+=msg + "\n";
+            document.getElementsByName("price")[0].value = sam;
+            if(document.getElementById("one").checked){
+                q=1;
+                final+= "\nQuantity"+q;
+                document.getElementsByName("price")[0].value=sam*q;
+            }
+            else if(document.getElementById("two").checked){
+                q=2;
+                final+= "\nQuantity"+q;
+                document.getElementsByName("price")[0].value=sam*q;
+            }
+            else if(document.getElementById("three").checked){
+                q=3;
+                final+= "\nQuantity"+q;
+                document.getElementsByName("price")[0].value=sam*q;
+            }
+                
+        }
+        else if (msg=="Google Pixel 2"){
+            document.getElementById("img").innerHTML = "<img src='pixel.jpg'>";
+            final+=msg + "\n";
+            document.getElementsByName("price")[0].value = google;
+            if(document.getElementById("one").checked){
+                q=1;
+                final+= "\nQuantity"+q;
+                document.getElementsByName("price")[0].value=google*1;
+            }
+            else if(document.getElementById("two").checked){
+                q=2;
+                final+= "\nQuantity"+q;
+                document.getElementsByName("price")[0].value=google*2;
+            }
+            else if(document.getElementById("three").checked){
+                q=3;
+                final+= "\nQuantity"+q;
+                document.getElementsByName("price")[0].value=google*3;
+            }
+        }
+        else if (msg=="Iphone 8 plus"){
+            document.getElementById("img").innerHTML = "<img src='i8.jpg'>";
+            final+=msg + "\n";
+            document.getElementsByName("price")[0].value = i8;
+            if(document.getElementById("one").checked){
+                q=1;
+                final+= "\nQuantity"+q;
+                document.getElementsByName("price")[0].value=i8*1;
+            }
+            else if(document.getElementById("two").checked){
+                q=2;
+                final+= "\nQuantity"+q;
+                document.getElementsByName("price")[0].value=i8*2;
+            }
+            else if(document.getElementById("three").checked){
+                q=3;
+                final+= "\nQuantity"+q;
+                document.getElementsByName("price")[0].value=i8*3;
+        }
+
+        }
+        final+="\n Payment"
+        if(document.getElementById("cash").checked)
+        {       tax=0.01;
+                final+="cash";
+                document.getElementsByName("paycharge")[0].value= "1%";
+        }
+        else if(document.getElementById("card").checked){
+                tax=0.05;
+                final+="card";
+                document.getElementsByName("paycharge")[0].value= "5%"
+        }
+        else if(document.getElementById("paytm").checked){
+                tax=0.08;
+                final+="PayTM"
+                document.getElementsByName("paycharge")[0].value="8%";
+        }
+        
+        if(document.getElementById("del").checked){
+                final+="\n Delivary Charges: 2%"
+                deltax=0.02;
+                document.getElementsByName("delcharge")[0].value="2%";
+        }
+        
+
+        
+        /*if(document.getElementById("summary").checked)
+            document.getElementsByName("summ")[0].value= final;
+        */
+        document.getElementById("summ1").innerHTML= final;
+            
+        
+
+      
+
+
+        
+    }
+</script>
+
+<h1><center> PRODUCT BILL </center></h1>
+    <br><br><br>
+<center><select id="products" onchange = "quant()" placeholder="Select Product">
+    <option selected value=-1> Select Product </option>
+    <option value = "Mac Book Pro"> macbook </option>
+    <option value = "Samsung Galaxy 8"> galaxy </option>
+    <option value = "Google Pixel 2"> pixel </option>
+    <option value = "Iphone 8 plus"> Iphone </option>
+</select></center>
+<br>
+
+<div id="img" style="height:50px ;width: 50px">
+</div> 
+<center><label for="price"></label><input type="textbox" name="price" placeholder = "Price" disabled></input> <br></center>
+<br>
+<center><table border=1>
+    <tr>
+        <td>
+            <h2> Quantity</h2>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="radio" name="q" id="one" onclick="quant()">One
+            <input type="radio" name="q" id="two" onclick="quant()">Two
+            <input type="radio" name="q" id="three" onclick="quant()">Three
+        </td>
+    </tr>
+</table></center>
+<br>
+<center><table border=1>
+    <tr>
+        <td>
+            <h2> Payment Mode</h2>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="radio" name="pay" id="cash" onclick="quant()">Cash
+            <input type="radio" name="pay" id="card" onclick = "quant()">Card
+            <input type="radio" name="pay" id="paytm" onclick="quant()">PayTM
+        </td>
+    </tr>
+</table></center> <br>
+
+<center>Payment Charges:<label for="paycharge"></label><input type="textbox" name="paycharge" placeholder = "Tax charges" disabled></input> <br></center>
+<br>
+<center><input type="checkbox" id="del" onclick="quant()">Door Delivery 
+<label for="delcharge"></label><input type="textbox" name="delcharge" placeholder = "Charges" disabled></input> <br></center>
+<br>
+<center><input type="radio" name="Submit" id="summary" onclick="quant()"/>Click here for Summary </center>
+    
+<br>
+<center><div style= "width: 150px; height: 150px; overflow: scroll; border : 5px solid black; padding: 10px" id="summ1"> 
+<!--<center><label for="summ"></label><input type="textbox" name="summ" placeholder = "Summary" disabled  style="overflow: scroll" </input> <br></center>-->
+</div>
+</center>
+
+<center><span id="summ"></span><center>
